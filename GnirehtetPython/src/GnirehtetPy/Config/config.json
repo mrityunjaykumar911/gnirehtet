@@ -1,0 +1,15 @@
+{
+  "start" : "adb shell am broadcast -a com.genymobile.gnirehtet.START -n com.genymobile.gnirehtet/.GnirehtetControlReceiver",
+  "stop" : "adb shell am broadcast -a com.genymobile.gnirehtet.STOP -n com.genymobile.gnirehtet/.GnirehtetControlReceiver",
+  "kill": "kill -9 %s",
+  "adb_download" : {"mac":"",
+                    "windows":"",
+                    "linux":""},
+  "adb": {
+    "shell":"adb shell",
+    "list":"adb devices",
+    "reverse":"adb reverse tcp:31416 tcp:31416"
+  },
+  "queue_name" :"gnirehtet",
+  "max_time_limit" : 2.0
+}
