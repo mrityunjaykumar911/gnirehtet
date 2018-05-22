@@ -25,8 +25,8 @@ from pqueue import Queue
 import time
 from psutil import Popen
 
-from src.talentica.GnirehtetPy import CONFIG_FILE_NAME
-from src.talentica.GnirehtetPy.Config.ConfigLoader import get_common_config
+from GnirehtetPython.src.GnirehtetPy import CONFIG_FILE_NAME
+from GnirehtetPython.src.GnirehtetPy.Config.ConfigLoader import get_common_config
 
 config_object = get_common_config(CONFIG_FILE_NAME)
 
