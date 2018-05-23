@@ -77,8 +77,9 @@ class GnirehtetClient:
         self.device_name = self.get_conected_deivce()
 
     def kill_old(self):
-        os.system("kill -9 %s" % self.process_id)
-        self.process_id = None
+        if self.process_id is not None:
+            os.system("kill -9 %s" % self.process_id)
+            self.process_id = None
 
     def get_conected_deivce(self):
         first = None
@@ -100,9 +101,9 @@ class GnirehtetClient:
         self.connected = (dev == self.device_name) and (self.process_id is not None)
 
 
-def process_gnirehtet(callback):
+def process_gnirehtet(callback, client):
     q = Queue(queue_name)
-    client = GnirehtetClient()
+
 
     start = time.time()
 
@@ -190,10 +191,14 @@ def end_gnirehtet():
 
 
 if __name__ == '__main__':
+    client = GnirehtetClient()
     clear_prev_queue()
     os.system("rm -rf %s" % queue_name)
 
-    callback = UsbUtils()
-    start_gnirehtet()
-    process_gnirehtet(callback)
-    end_gnirehtet()
+    try:
+        callback = UsbUtils()
+        start_gnirehtet()
+        process_gnirehtet(callback,client)
+        end_gnirehtet()
+    except:
+        client.kill_old()
